@@ -1,6 +1,4 @@
 /** @type {import('next').NextConfig} */
-const nextConfig = {
-  // Keep it minimal and stable for CI builds
-};
+const nextConfig = {};
 
 export default nextConfig;
