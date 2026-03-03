@@ -1,4 +1,6 @@
-node_modules
-.next
-.env.local
-.DS_Store
+/** @type {import('next').NextConfig} */
+const nextConfig = {
+  // Keep it minimal and stable for CI builds
+};
+
+export default nextConfig;
