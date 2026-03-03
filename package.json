@@ -1,2 +1,53 @@
-/// <reference types="next" />
-/// <reference types="next/image-types/global" />
+{
+  "name": "pose-runtime-mvp",
+  "private": true,
+  "version": "0.1.0",
+  "type": "module",
+  "scripts": {
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start",
+    "web:dev": "next dev",
+    "web:build": "next build",
+    "web:start": "next start -p 3100",
+    "electron:dev": "concurrently -k \"next dev -p 3100\" \"wait-on http://localhost:3100 && electron electron/main.cjs\"",
+    "electron:pack": "npm run web:build && electron-builder --dir",
+    "electron:dist": "npm run web:build && electron-builder"
+  },
+  "dependencies": {
+    "concurrently": "^8.2.2",
+    "electron": "^31.3.1",
+    "electron-builder": "^24.13.3",
+    "next": "15.2.0",
+    "openai": "^4.0.0",
+    "react": "19.0.0",
+    "react-dom": "19.0.0",
+    "sharp": "^0.33.5",
+    "wait-on": "^7.2.0"
+  },
+  "build": {
+    "appId": "com.coromoto.poseRuntime",
+    "productName": "Pose Runtime",
+    "files": [
+      "electron/**",
+      ".next/**",
+      "public/**",
+      "package.json",
+      "next.config.mjs",
+      "lib/**",
+      "app/**"
+    ],
+    "extraMetadata": {
+      "main": "electron/main.cjs"
+    },
+    "directories": {
+      "output": "dist-electron"
+    },
+    "win": {
+      "target": [
+        "nsis"
+      ],
+      "artifactName": "PoseRuntime-Setup-${version}.exe"
+    }
+  }
+}
